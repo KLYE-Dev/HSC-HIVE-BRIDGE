@@ -58,7 +58,7 @@ The developer can choose to either send the tokens to a 0X000 address and thereb
 
 ##### EOS21 GitHub 详细目录
 
-- . **eos21/eos21.js**  - Oracle 负责管理代币从ETH到EOS转移。
+- . **eos21/hsc21.js**  - Oracle 负责管理代币从ETH到EOS转移。
 - . **eos21/** [**config.json**](https://github.com/sheos-org/eos21/blob/master/config.json) - blackhole和Oracle合约的配置文件
 - . **eos21/blackhole/**** 合约 ****/**  - blackhole合约如下
   - . **sol** - blackhole合约吸收ERC20代币。
@@ -160,7 +160,7 @@ _我们的脚本自动化了一些流程，这是为了帮助您理解流程中�
 
 - .\*\*从EOS21 项目的根文件开始oracle\*\*
   - ._打开另一个窗口 __——__ 或者更好在窗口展示命令。_
-  - .node ./eos21.js
+  - .node ./hsc21.js
 
 ## 步骤3：部署EOS代币合约
 

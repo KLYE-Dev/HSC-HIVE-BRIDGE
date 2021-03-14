@@ -1,14 +1,14 @@
 pragma solidity ^0.4.22;
 
-import "./EosValidator.sol";
+import "./HiveValidator.sol";
 import "./BlackHole.sol";
 
-/** @title BlackHoleEosToAccount 
- * 
+/** @title BlackHoleEosToAccount
+ *
  * @dev It burns ERC20 tokens and log it with an associated EOS account.
  */
-contract BlackHoleEosAccount is EosValidator, BlackHole{
-    constructor(address _erc20Contract, uint _criticBlock, uint _minimumAmount) public 
+contract BlackHoleEosAccount is HiveValidator, BlackHole{
+    constructor(address _erc20Contract, uint _criticBlock, uint _minimumAmount) public
     BlackHole(_erc20Contract, _criticBlock, _minimumAmount)
     {
     }

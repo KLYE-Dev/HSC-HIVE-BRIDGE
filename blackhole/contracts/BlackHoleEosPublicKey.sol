@@ -1,14 +1,14 @@
 pragma solidity ^0.4.22;
 
-import "./EosValidator.sol";
+import "./HiveValidator.sol";
 import "./BlackHole.sol";
 
-/** @title BlackHoleEosPublicKey 
- * 
+/** @title BlackHoleEosPublicKey
+ *
  * @dev It burns ERC20 tokens and log it with an associated EOS public key.
  */
-contract BlackHoleEosPublicKey is EosValidator, BlackHole{
-    constructor(address _erc20Contract, uint _criticBlock, uint _minimumAmount) public 
+contract BlackHoleEosPublicKey is HiveValidator, BlackHole{
+    constructor(address _erc20Contract, uint _criticBlock, uint _minimumAmount) public
     BlackHole(_erc20Contract, _criticBlock, _minimumAmount)
     {
     }

@@ -1,6 +1,6 @@
 pragma solidity ^0.4.22;
 
-contract EosValidator {
+contract HiveValidator {
     function isValidKey(string str) public pure returns (bool){
         bytes memory b = bytes(str);
         if(b.length != 53) return false;
@@ -18,7 +18,7 @@ contract EosValidator {
                !(char >= 0x4A && char <= 0x4E) &&
                !(char >= 0x50 && char <= 0x5A) &&
                !(char >= 0x61 && char <= 0x6B) &&
-               !(char >= 0x6D && char <= 0x7A)) 
+               !(char >= 0x6D && char <= 0x7A))
             return false;
         }
 
@@ -27,18 +27,18 @@ contract EosValidator {
 
     function isValidAccount(string account) public pure returns (bool){
         bytes memory b = bytes(account);
-        if (b.length != 12) return false;
-
+        if (b.length <= 3) return false;
+        if (b.length >= 17) return false;
         for(uint i = 0; i<b.length; i++){
             bytes1 char = b[i];
 
             // a-z && 1-5 && .
-            if(!(char >= 0x61 && char <= 0x7A) && 
-               !(char >= 0x31 && char <= 0x35) && 
-               !(char == 0x2E)) 
+            if(!(char >= 0x61 && char <= 0x7A) &&
+               !(char >= 0x31 && char <= 0x35) &&
+               !(char == 0x2E))
             return  false;
         }
-        
+
         return true;
     }
 }

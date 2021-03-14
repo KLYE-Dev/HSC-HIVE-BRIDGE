@@ -1,11 +1,12 @@
 const fs = require('fs');
 const Web3 = require('web3');
 const EosJs = require('eosjs');
+const HiveJS = require('@hiveio/hive-js');
 const check = require('./utils/Check');
 
 const createWormHole = require('./oracle/TeleportOracle.js');
 
-console.log("ERC20 teleporting starts ...");
+console.log("HRC20 teleporting starts ...");
 
 const getParams = () => {
     const argv = require('minimist')(process.argv.slice(2), {
@@ -72,7 +73,7 @@ eos.getInfo({})
                         const amountFloat = (amount/10**decimals).toFixed(decimals);
                         const amountWithSymbol = amountFloat + " " + symbol;
                         console.log("(EVENT) amount=" + amountWithSymbol + ", to=" + note);
-                        
+
                         eosioToken.issue(note, amountWithSymbol, "Emerged from eosioToken")
                             .catch(console.error);
                     }
@@ -84,4 +85,3 @@ eos.getInfo({})
                 process.exit();
             });
     });
-

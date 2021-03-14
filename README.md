@@ -1,28 +1,26 @@
-# EOSIO21 Protocol ✌🏻☝🏼
-Teleport your ERC20 tokens to EOS (or any EOSIO sidechain or fork - such as WAX, TELOS, or BOS).
+# HIVE-HSC Protocol ✌🏻☝🏼
+Teleport your HIVE tokens to HSC HRC-20 Tokens (or any ETH sidechain or fork - such as WAX, TELOS, or BOS, BnB).
 
 [中文版](README-CH.MD)
 
 ## Summary
 
-EOSIO21 is a protocol to enable cross-chain ⛓ token movement between ETH and EOS.
+HIVE-HSC is a protocol to enable cross-chain ⛓ token movement between ETH and EOS.
 
-* ETH (ERC20)  --> EOS21 --> Any EOSIO Chain (tokens)
+* HIVE <--> HIVE(HRC20) <--> ETH(ERC20) --> Any ETH Chain (BNB tokens and whatnot)
 
 The goal of this protocol is to provide a standard for app developers to move their tokens and apps between chains.
 
-Join the [shEOS telegram](https://t.me/sheos_org) to discuss EOS21.
-Also please consider casting your vote for sheos21sheos as a Block Producer.
 
 ## Built With
-* [EOS.IO](https://github.com/EOSIO/eos) - EOS Blockchain
+* [EOS.IO](https://github.com/EOSIO/eos) - HIVE Blockchain
 * [EOSIO.CDT](https://github.com/EOSIO/eosio.cdt) - EOS Contract Development Toolkit
 
 ## Prerequisites
 * [node.js](https://nodejs.org) - Javascript runtime (tested with v8.10 and 10.11)
 * [cmake](https://cmake.org/) - Packaging
 
-## EOSIO21 Overview
+## HIVE-HSC Overview
 
 We believe that any token should be able to move as the developers desire or require as their apps may be best run on different chains at different times.
 
@@ -30,7 +28,7 @@ Typically, the way this has been done is by using what we call the "snapshot" me
 
 In the EOS21 protocol, we are providing another option for ERC20 contracts that do not have a built-in pause/expiry function but who want to move their token to another chain. We are calling this action: teleportation. To teleport a token from one chain to another, it will exist on the destination chain, but no longer exist in a fungible form on the source chain.
 
-#### The EOSIO21 Protocol has 3 Dimensions
+#### The HIVE-HSC Protocol has 3 Dimensions
 
 * **Dimension 1** is on the source chain, Ethereum. There is a Blackhole 🌌 contract on ETH to perform the absorption of ERC20 tokens and also to receive account information for the destination chain (EOSIO). This information can either be configured to use the EOSIO Account name or an EOS Public Key. In the second case, the oracle must be changed to create an EOS account for the user.
 * **Dimension 2** is an Oracle 🔮 program that runs off-chain to watch the ETH transactions and authorize the distribution of EOS tokens (in a future version of this protocol, the Oracle could be run entirely on EOSIO).
@@ -43,8 +41,8 @@ Once a user sends their tokens and destination account to the Blackhole, the ERC
 The developer can choose to either send the tokens to a 0X000 address and thereby 🔥 them, or hold them in the Blackhole contract.
 
 
-##### EOSIO21 Github Inventory
-* **eos21/eos21.js** - Oracle for managing teleportation of tokens from ETH to EOS
+##### HIVE-HSC Github Inventory
+* **eos21/hsc21.js** - Oracle for managing teleportation of tokens from ETH to EOS
 * **eos21/[config.json](https://github.com/sheos-org/eos21/blob/master/config.json)** - configuration file for blackhole and oracle contracts
 * **eos21/blackhole/contracts/** - blackhole contracts listed below
     * **BlackHole.sol**	- blackhole contract that will attract ERC20 tokens
@@ -52,7 +50,7 @@ The developer can choose to either send the tokens to a 0X000 address and thereb
     * **BlackHoleEosPublicKey.sol** - takes an EOS public key as an input to activate a teleportation (you will need to create  accounts using a modified oracle for account creation)
     * **TestERC20Token.sol** - used to specify ElementToken.sol for test deployments
     * **TestElementToken.sol** - default ElementToken contract for ERC20 tokens
-    * **EosValidator.sol** - validates EOS account or key
+    * **HiveValidator.sol** - validates EOS account or key
 
 
 * **eos21/blackhole/migrations/** - scripts for deploying truffle test
@@ -122,7 +120,7 @@ Pleaes read [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Step 1: Truffle Deployment of Ethereum Contracts (ERC20 token + Blackhole)
 
-* **Clone EOSIO21 repository**
+* **Clone HIVE-HSC repository**
    * `git clone https://github.com/sheos-org/eos21.git`
 
 * ** Compile the EOS token contract**
@@ -134,7 +132,7 @@ Pleaes read [CONTRIBUTING.md](CONTRIBUTING.md)
 
 * ** Change directories to root of project**
     * `cd ../../`
-    
+
 
 * ** Install npm for project**
     * `npm install`
@@ -159,7 +157,7 @@ Pleaes read [CONTRIBUTING.md](CONTRIBUTING.md)
 ## Step 2: Deploy Oracle
 * ** Start the oracle from the root of the EOS21 project**
   * *Open another session - or even better [screen](https://www.rackaid.com/blog/linux-screen-tutorial-and-how-to/) the command.*
-  * `node ./eos21.js`
+  * `node ./hsc21.js`
 
 ## Step 3: Deploy EOSIO Token Contract
 * ** Deploy standard EOSIO.token contract**
