@@ -11,7 +11,7 @@ module.exports = (argv) => {
     const contract = JSON.parse(input.toString());
 
     // Create Contract proxy class
-    const BlackHole = new web3.eth.Contract(contract.abi);
+    const GloryHole = new web3.eth.Contract(contract.abi);
 
     check(argv.sender, "sender: " + argv.sender);
     check(argv.gas, "gas: " + argv.gas);
@@ -20,7 +20,7 @@ module.exports = (argv) => {
     check(argv.minimum_amount | argv.minimum_amount === 0, "minimum_amount: " + argv.minimum_amount);
 
     console.log("(II) start deployment ...");
-    return BlackHole.deploy({
+    return GloryHole.deploy({
         data: contract.bytecode,
         arguments: [argv.erc20_address, argv.critic_block, argv.minimum_amount]
     })
@@ -32,9 +32,9 @@ module.exports = (argv) => {
         .on('transactionHash', transactionHash => console.log("(II) transactionHash: " + transactionHash))
         .on('receipt', receipt => console.log("(II) address: ", receipt.contractAddress)) // contains the new contract address
         .on('confirmation', (confirmationNumber, receipt) => console.log("(II) confirmation: " + confirmationNumber))
-        .then(blackHole => {
+        .then(gloryHole => {
             console.log("(II) ... done");
-            return blackHole;
+            return gloryHole;
         })
         .catch(reason => {
             console.error(reason);

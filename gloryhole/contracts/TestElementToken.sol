@@ -1,6 +1,4 @@
 pragma solidity ^0.4.11;
-
-
 /**
  * @title ERC20Basic
  * @dev Simpler version of ERC20 interface
@@ -13,8 +11,6 @@ contract ERC20Basic {
   event Transfer(address indexed from, address indexed to, uint256 value);
 }
 
-
-
 /**
  * @title Ownable
  * @dev The Ownable contract has an owner address, and provides basic authorization control
@@ -22,11 +18,7 @@ contract ERC20Basic {
  */
 contract Ownable {
   address public owner;
-
-
   event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
-
-
   /**
    * @dev The Ownable constructor sets the original `owner` of the contract to the sender
    * account.
@@ -34,8 +26,6 @@ contract Ownable {
   function Ownable() {
     owner = msg.sender;
   }
-
-
   /**
    * @dev Throws if called by any account other than the owner.
    */
@@ -43,8 +33,6 @@ contract Ownable {
     require(msg.sender == owner);
     _;
   }
-
-
   /**
    * @dev Allows the current owner to transfer control of the contract to a newOwner.
    * @param newOwner The address to transfer ownership to.
@@ -56,19 +44,6 @@ contract Ownable {
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 /**
  * @title SafeMath
  * @dev Math operations with safety checks that throw on error
@@ -98,9 +73,6 @@ library SafeMath {
     return c;
   }
 }
-
-
-
 /**
  * @title Basic token
  * @dev Basic version of StandardToken, with no allowances.
@@ -135,13 +107,6 @@ contract BasicToken is ERC20Basic {
   }
 
 }
-
-
-
-
-
-
-
 /**
  * @title ERC20 interface
  * @dev see https://github.com/ethereum/EIPs/issues/20
@@ -153,8 +118,6 @@ contract ERC20 is ERC20Basic {
   event Approval(address indexed owner, address indexed spender, uint256 value);
 }
 
-
-
 /**
  * @title Standard ERC20 token
  *
@@ -165,7 +128,6 @@ contract ERC20 is ERC20Basic {
 contract StandardToken is ERC20, BasicToken {
 
   mapping (address => mapping (address => uint256)) allowed;
-
 
   /**
    * @dev Transfer tokens from one address to another
@@ -240,12 +202,6 @@ contract StandardToken is ERC20, BasicToken {
   }
 
 }
-
-
-
-
-
-
 
 /**
  * @title Pausable

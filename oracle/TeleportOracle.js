@@ -1,15 +1,15 @@
 module.exports = (params) => {
-    const { blackHole, onData } = params;
+    const { gloryHole, onData } = params;
 
-    blackHole.methods.closed().call()
+    gloryHole.methods.closed().call()
     .then(result => {
         if (result === true){
-            console.log("(EE) blackHole closed ... exiting");
+            console.log("(EE) gloryHole closed ... exiting");
             process.exit(0);
         }
     })
 
-    blackHole.events.Teleport({
+    gloryHole.events.Teleport({
 //        fromBlock: 0
     })
         .on('data', event => {
@@ -17,15 +17,15 @@ module.exports = (params) => {
                 onData(event);
             }
             else
-                console.log("(II) blackHole event " + event.returnValues);
+                console.log("(II) gloryHole event " + event.returnValues);
         })
         .on('changed', reason => console.log("(WW) TeleportOracle: " + reason))
         .on('error', reason => console.log("(EE) TeleportOracle: " + reason));
 
-    blackHole.events.Closed({
+    gloryHole.events.Closed({
     })
         .on('data', () => {
-            console.log("(END) blackHole closed ... exiting");
+            console.log("(END) gloryHole closed ... exiting");
             process.exit(0);
         })
         .on('changed', reason => console.log("(WW) TeleportOracle: " + reason))

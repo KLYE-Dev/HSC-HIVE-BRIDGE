@@ -25,15 +25,15 @@ const params = getParams();
 
 const eosioTokenKey = params.eosiotoken.private_key;
 const eosProvider = params.eosiotoken.http_endpoint;
-const blackHoleFile = "./blackhole/build/contracts/BlackHoleEosAccount.json";
-const ethereumProvider = params.blackhole.websocket_provider;
+const gloryHoleFile = "./gloryhole/build/contracts/GloryHoleHiveAccount.json";
+const ethereumProvider = params.gloryhole.websocket_provider;
 const eosioTokenAddress = params.eosiotoken.account;
-const blackHoleAddress = fs.readFileSync('./blackhole_address', 'utf-8')
-const decimals = params.blackhole.decimals;
-const symbol = params.blackhole.symbol;
+const gloryHoleAddress = fs.readFileSync('./gloryhole_address', 'utf-8')
+const decimals = params.gloryhole.decimals;
+const symbol = params.gloryhole.symbol;
 const chainId = params.eosiotoken.chain_id;
 
-check(Web3.utils.isAddress(blackHoleAddress), "blackhole account: " + blackHoleAddress);
+check(Web3.utils.isAddress(gloryHoleAddress), "gloryhole account: " + gloryHoleAddress);
 check(eosioTokenAddress, "eosio.token account: " + eosioTokenAddress);
 check(eosioTokenKey, 'eosio.token key: ' + eosioTokenKey);
 check(ethereumProvider, "Ethereum provider: " + ethereumProvider);
@@ -54,20 +54,20 @@ eosConfig = {
     authorization: eosioTokenAddress + '@active'
 };
 
-const input = fs.readFileSync(blackHoleFile);
+const input = fs.readFileSync(gloryHoleFile);
 const contract = JSON.parse(input.toString());
 const abi = contract.abi;
 
 const websocketProvider = new Web3.providers.WebsocketProvider(ethereumProvider);
 const web3 = new Web3(websocketProvider);
-const blackHole = new web3.eth.Contract(abi, blackHoleAddress);
+const gloryHole = new web3.eth.Contract(abi, gloryHoleAddress);
 const eos = EosJs(eosConfig);
 eos.getInfo({})
     .then(result => {
         return eos.contract(eosioTokenAddress)
             .then(eosioToken => {
                 createWormHole({
-                    blackHole,
+                    gloryHole,
                     onData: event => {
                         const { amount, note } = event.returnValues;
                         const amountFloat = (amount/10**decimals).toFixed(decimals);
@@ -78,7 +78,7 @@ eos.getInfo({})
                             .catch(console.error);
                     }
                 });
-                console.log("(II) waiting blackhole events ...");
+                console.log("(II) awaiting gloryhole event ...");
             })
             .catch(reason => {
                 console.log("error" + reason);
